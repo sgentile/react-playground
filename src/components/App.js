@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import TodoApp from '../containers/TodoContainer';
 import ScrollPos from '../components/functionAsChildComponent/scrollPos';
 import SlideShow from '../components/childrenApi/SlideShow';
+import { Link } from 'react-router-dom'
 
 class App extends Component {
   render() {    
@@ -14,9 +15,8 @@ class App extends Component {
         </header>
         <div className="App-intro">
           <h3>React-Redux...</h3>
-          
+          <Link to="/context">Context Example</Link>
             <TodoApp />
-            
             <ScrollPos>
               {
                 position => <h3 style={{transform: `rotateX(${position}deg)`}}>FunctionAsChildComponent!</h3>
