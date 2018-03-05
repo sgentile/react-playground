@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import WithLocaleHOC from './WithLocaleHOC';
 
+// with preferred HOC approach...
 class ContentPanel extends Component {
-  static contextTypes = {
+  static propTypes = {
     locale: PropTypes.object
   }
   render(){
-    const { locale } = this.context;    
+    const { locale } = this.props;  
     return (
-      <div>
-        {locale.salutation}
-      </div>
+      <span>
+        {locale.strings.salutation} (Content Panel)
+      </span>
     )
   }
 }
-
-export default ContentPanel;
+export default WithLocaleHOC(ContentPanel);
