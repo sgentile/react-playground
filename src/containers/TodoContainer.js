@@ -9,7 +9,9 @@ import busyIndicator from '../components/highOrderComponent/busyIndicator';
 import { fetchTodos } from '../actions';
 import { merge } from 'glamor';
 
-import { getUserName } from '../api'
+import { getUserName } from '../api';
+
+import { selectUserName } from '../selectors';
 
 class TodoApp extends Component {
   componentDidMount(){    
@@ -38,7 +40,7 @@ TodoApp.propTypes = {
 
 const mapStateToProps = state => ({
   isSearching: state.searchStatus.isSearching,
-  username: state.user ? `Welcome ${state.user}!` : ''
+  username: selectUserName(state) //selector...
 })
 
 const mapDispatchToProps = (dispatch) => {

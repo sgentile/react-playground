@@ -4,7 +4,7 @@ const getVisibilityFilter = (state, props) => state.visibilityFilter;
 const getTodos = (state, props) => state.todos;
 
 export const getVisibleTodos = createSelector(  
-  [ getVisibilityFilter, getTodos ],
+  getVisibilityFilter, getTodos,
   (visibilityFilter, todos) => {
     // eslint-disable-next-line
     switch(visibilityFilter) {
@@ -17,3 +17,16 @@ export const getVisibleTodos = createSelector(
     }
   }
 )
+
+// without reselect:
+// export const selectUserName = (state) => {
+//   return state.user ? `Welcome ${state.user}!` : '';
+// }
+
+// using reselect:
+const getUserName = state => state.user;
+export const selectUserName = createSelector(getUserName, (userName) => {
+  return userName ? `Welcome ${userName}!` : ''; 
+});
+
+
