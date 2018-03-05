@@ -32,3 +32,10 @@ export const getTodos = (filter) => {
     }
   })
 }
+
+//just using this to show how to create promise based middleware...
+export const getUserName = () => {
+  return delay(2000).then(() => {
+    return 'Steve';
+  })
+}

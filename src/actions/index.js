@@ -1,6 +1,6 @@
 
 import { v4 } from 'uuid';
-import { getTodos } from '../api';
+import { getTodos, getUserName } from '../api';
 
 export const addTodo = text => {
   return {
@@ -20,6 +20,8 @@ export const toggleTodo = id => {
 export const removeTodo = id => {
   return {
     type: 'REMOVE_TODO',
+    shouldConfirm: true,
+    confirmationMessage: 'Are you sure you want to remove this todo?',
     id
   }
 }
@@ -55,4 +57,5 @@ export const fetchTodos = () => {
     return getTodos('all').then(response => dispatch(receiveTodos(response)))
   }
 }
+
 

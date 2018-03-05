@@ -9,11 +9,13 @@ const TodoList = ({todos, onTodoClick, onTodoRemove}) => (
     {todos.map(todo => (
       <Todo key={todo.id} {...todo} 
         onClick={() => onTodoClick(todo.id)}
-        onRemove={() => {
-          if(window.confirm('Are you sure you want to delete this todo?')){
-            onTodoRemove(todo.id)
-          }
-        }}
+        onRemove={() => onTodoRemove(todo.id)}
+        // cleaning this up by using middleware...
+        // onRemove={() => {
+        //   if(window.confirm('Are you sure you want to delete this todo?')){
+        //     onTodoRemove(todo.id)
+        //   }
+        // }}
       />
     ))}
     </ul>

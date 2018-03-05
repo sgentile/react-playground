@@ -16,10 +16,20 @@ const searchStatus = (state=defaultSearchStatus, action) => {
       return state
   }
 }
+
+const user = (state=null, action) => {
+  switch(action.type) {
+    case 'FETCH_USER':      
+      return action.payload
+    default:
+    return state;
+  }
+}
 const reducers = combineReducers({
   searchStatus,
   todos,
-  visibilityFilter
+  visibilityFilter,
+  user
 })
 
 export default reducers;

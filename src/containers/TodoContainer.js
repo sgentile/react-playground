@@ -4,14 +4,24 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import VisibleTodoList from './VisibleTodoList';
 import AddTodo from './AddTodo';
+
 import busyIndicator from '../components/highOrderComponent/busyIndicator';
 import { fetchTodos } from '../actions';
 import { merge } from 'glamor';
 
+import { getUserName } from '../api'
+
 class TodoApp extends Component {
+  componentDidMount(){    
+    this.props.dispatch({
+      type: 'FETCH_USER',
+      promise: getUserName()
+    })
+  }
   render(){
     return (
       <div>
+        {this.props.username}
         <AddTodo/>
         <VisibleTodoList />
         <p>
@@ -21,14 +31,19 @@ class TodoApp extends Component {
     )
   }
 }
-
+ 
 TodoApp.propTypes = {
   loadTime: PropTypes.string
 }
 
 const mapStateToProps = state => ({
-  isSearching: state.searchStatus.isSearching
+  isSearching: state.searchStatus.isSearching,
+  username: state.user ? `Welcome ${state.user}!` : ''
 })
+
+const mapDispatchToProps = (dispatch) => {
+  return { dispatch }
+}
 
 
 //store.dispatch(fetchTodos());
@@ -36,5 +51,5 @@ const WrappedApp = busyIndicator(TodoApp);
 // export default WrappedApp;
 export default connect(
   mapStateToProps,
-  {}
+  mapDispatchToProps
 )(WrappedApp);
